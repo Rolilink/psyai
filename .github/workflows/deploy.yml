@@ -70,5 +70,7 @@ jobs:
         uses: supabase/setup-cli@v1
         with:
           version: latest
+      - name: Set Secrets
+        run: supabase secrets set OPENAI_API_KEY ${{ secrets.OPENAI_API_KEY }} --project-ref $PROJECT_ID && supabase secrets set OPENAI_ASSISTANT_ID ${{ secrets.OPENAI_ASSISTANT_ID }} --project-ref $PROJECT_ID
       - name: Deploy Edge Functions
         run: supabase functions deploy --project-ref $PROJECT_ID
